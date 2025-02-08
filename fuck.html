@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Sleek UI</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        /* Reset */
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #1e1e2f, #282c34);
+        }
+
+        /* Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://i.postimg.cc/XNRp2zTh/images-8.jpg') no-repeat center center/cover;
+            z-index: -2;
+            filter: blur(8px) brightness(0.5);
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Center Container */
+        .center-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            background: rgba(30, 30, 50, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 123, 255, 0.5), 0 0 50px rgba(0, 123, 255, 0.7);
+            text-align: center;
+        }
+
+        .text-view {
+            font-size: 28px;
+            margin: 15px 0;
+            color: #00bcd4;
+            text-shadow: 0 0 20px #00bcd4, 0 0 40px cyan;
+            animation: glow 2s infinite;
+        }
+
+        .random-result {
+            font-size: 40px;
+            margin: 20px 0;
+            color: #ffc107;
+            text-shadow: 0 0 20px #ffc107, 0 0 50px gold;
+            animation: pulse 2s infinite;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .button {
+            padding: 20px 40px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            text-shadow: 0 0 10px #007bff, 0 0 20px #0056b3;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+        }
+
+        .button:hover {
+            background: linear-gradient(135deg, #0056b3, #007bff);
+            color: white;
+            box-shadow: 0 0 25px rgba(0, 123, 255, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px cyan, 0 0 40px cyan; }
+            50% { text-shadow: 0 0 30px cyan, 0 0 60px cyan; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Content Container -->
+    <div class="center-container">
+        <div id="textView1" class="text-view">Loading...</div>
+        <div id="textView2" class="text-view">00:00</div>
+        <div id="randomView" class="random-result">Result: BIG</div>
+        <div class="buttons">
+            <button class="button" onclick="window.open('https://t.me/YOUKNOW_PRANAV', '_blank')">OWNER ID</button>
+            <button class="button" onclick="window.open('https://t.me/+zpQX-tyG6U4yOTk1', '_blank')">OWNER CHANNEL</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Particles.js
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 100, "density": { "enable": true, "value_area": 900 } },
+                "color": { "value": "#00bcd4" },
+                "shape": {
+                    "type": "circle",
+                    "stroke": { "width": 1, "color": "#00bcd4" }
+                },
+                "opacity": { "value": 0.8, "random": true },
+                "size": { "value": 6, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00bcd4", "opacity": 0.6, "width": 1 },
+                "move": { "enable": true, "speed": 3, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "repulse": { "distance": 200, "duration": 0.4 }
+                }
+            },
+            "retina_detect": true
+        });
+
+        let previousTextView1 = "";
+
+        // Timer Logic
+        setInterval(() => {
+            const now = new Date();
+            const timeZoneOffset = 5.5 * 60 * 60 * 1000; // IST Offset
+            const currentTime = new Date(now.getTime() + timeZoneOffset);
+
+            const startHour = 5;
+            const startMinute = 29;
+            const startTime = new Date(currentTime);
+            startTime.setHours(startHour, startMinute, 0, 0);
+
+            let elapsedMinutes = Math.floor((currentTime - startTime) / (60 * 1000));
+            if (elapsedMinutes < 0) elapsedMinutes = 0;
+
+            const formattedDate = currentTime.toISOString().slice(0, 10).replace(/-/g, '');
+            const periodNumber = `100001${String(elapsedMinutes).padStart(4, '0')}`;
+
+            const remainingSeconds = 60 - currentTime.getSeconds();
+            document.getElementById("textView1").innerText = `${formattedDate}${periodNumber}`;
+            document.getElementById("textView2").innerText = `00:${String(remainingSeconds).padStart(2, '0')}`;
+
+            // Update Random Result only when textView1 changes
+            const currentTextView1 = `${formattedDate}${periodNumber}`;
+            if (currentTextView1 !== previousTextView1) {
+                const randomResult = Math.random() < 0.5 ? "BIG" : "SMALL";
+                document.getElementById("randomView").innerText = `Result: ${randomResult}`;
+                previousTextView1 = currentTextView1;
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
